@@ -4,7 +4,7 @@ static bool key_trigger = true; // スクリーンセーバ抑止機能 true(ON)
 
 const rgblight_segment_t PROGMEM rgb_L0_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     //{0, 3, HSV_RED},       // Light 4 LEDs, starting with LED 6
-    //{3, 3, HSV_CYAN},       // Light 4 LEDs, starting with LED 12
+    //{3, 3, HSV_CYAN},      // Light 4 LEDs, starting with LED 12
 	{0, 3, HSV_BLACK} 
  );
  
