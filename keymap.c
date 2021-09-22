@@ -1,5 +1,6 @@
  #include QMK_KEYBOARD_H
-
+static uint32_t key_timer = 0;
+static bool key_trigger = true; // スクリーンセーバ抑止機能 true(ON)/false(OFF)
 
 const rgblight_segment_t PROGMEM rgb_L0_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     //{0, 3, HSV_RED},       // Light 4 LEDs, starting with LED 6
@@ -43,6 +44,19 @@ void keyboard_post_init_user(void) {
 	}
 } 
 
+void matrix_scan_user(void) { 
+	// スクリーンセーバ抑止
+    if (timer_elapsed32(key_timer) > 30000) { // 30 seconds
+        key_timer = timer_read32();  // resets timer
+        if (key_trigger) {
+			tap_code(KC_MS_UP);
+			tap_code(KC_MS_DOWN);
+			tap_code(KC_MS_LEFT);
+			tap_code(KC_MS_RIGHT);
+		}else{
+		}
+	}
+}
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [0] = LAYOUT(KC_KP_7, KC_KP_8, KC_KP_9,
