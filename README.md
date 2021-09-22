@@ -1,0 +1,1 @@
+qmk compile -kb ymdk/ymd09 -km via2
